@@ -29,8 +29,8 @@ export function AppContextProvider({ children }) {
     dispatch({ type: ACTIONS.TOGGLE_TODO, payload: id });
   };
 
-  const clearTodos = (completed) => {
-    dispatch({ type: ACTIONS.TOGGLE_TODO, payload: completed });
+  const clearTodos = () => {
+    dispatch({ type: ACTIONS.CLEAR_COMPLETE });
   };
 
   return (

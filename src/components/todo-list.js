@@ -3,11 +3,16 @@
 import CrossSvgComponent from "./svgs/cross";
 import CheckSvgComponent from "./svgs/check";
 import { useAppContext } from "@/context/app-context-provider";
+import { useState, useEffect } from "react";
 
 const Count = ({ state }) => {
+  const [count, setCount] = useState(state.length);
+  useEffect(() => {
+    setCount(state.filter((item) => item.completed === false).length);
+  }, [state]);
   return (
     <p className="text-sm text-scheme-light-400 dark:text-scheme-dark-600">
-      {state.length} items left
+      {count} items left
     </p>
   );
 };
@@ -28,13 +33,13 @@ const Filter = () => {
   );
 };
 
-const ClearCompleted = ({ state }) => {
+const ClearCompleted = () => {
   const { clearTodos } = useAppContext();
 
   return (
     <button
       className="text-sm text-scheme-light-400 hover:text-scheme-light-500 dark:text-scheme-dark-600 dark:hover:text-scheme-dark-300"
-      onClick={() => clearTodos(state.completed)}
+      onClick={() => clearTodos()}
     >
       Clear completed
     </button>
@@ -109,7 +114,7 @@ export default function TodoList() {
       <div className="flex flex-row items-center justify-between border-t border-scheme-light-200 px-6 py-4 dark:border-scheme-dark-700">
         <Count state={state} />
         <Filter />
-        <ClearCompleted state={state} />
+        <ClearCompleted />
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ export const ThemeSwitch = () => {
 
   return (
     <button
-      onClick={() => (theme == "light" ? setTheme("dark") : setTheme("light"))}
+      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
       className="inline-block"
       title="Toggles light and dark theme"
       aria-label="auto"
