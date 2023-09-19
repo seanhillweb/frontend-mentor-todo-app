@@ -9,13 +9,14 @@ export const ThemeSwitch = () => {
 
   return (
     <button
-      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
+      onClick={() => (theme == "light" ? setTheme("dark") : setTheme("light"))}
       className="inline-block"
-      aria-label="Toggle theme"
+      title="Toggles light and dark theme"
+      aria-label="auto"
+      aria-live="polite"
     >
-      <span className="sr-only">Current theme: {theme}</span>
-      <SunSvgComponent className="fill-scheme-light-100 hidden dark:block" />
-      <MoonSvgComponent className="fill-scheme-light-100 block dark:hidden" />
+      <SunSvgComponent className="hidden fill-scheme-light-100 dark:block" />
+      <MoonSvgComponent className="block fill-scheme-light-100 dark:hidden" />
     </button>
   );
 };
