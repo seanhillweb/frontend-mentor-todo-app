@@ -2,6 +2,7 @@ export const ACTIONS = {
   ADD_TODO: "ADD_TODO",
   DELETE_TODO: "DELETE_TODO",
   TOGGLE_TODO: "TOGGLE_TODO",
+  CLEAR_COMPLETE: "CLEAR_COMPLETE",
 };
 
 export function AppReducer(state, action) {
@@ -17,6 +18,8 @@ export function AppReducer(state, action) {
         }
         return item;
       });
+    case ACTIONS.CLEAR_COMPLETE:
+      return state.filter((item) => item.completed !== action.payload);
     default:
       return state;
   }

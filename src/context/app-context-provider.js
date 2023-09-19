@@ -29,6 +29,10 @@ export function AppContextProvider({ children }) {
     dispatch({ type: ACTIONS.TOGGLE_TODO, payload: id });
   };
 
+  const clearTodos = (completed) => {
+    dispatch({ type: ACTIONS.TOGGLE_TODO, payload: completed });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -36,6 +40,7 @@ export function AppContextProvider({ children }) {
         addTodo,
         deleteTodo,
         toggleTodo,
+        clearTodos,
       }}
     >
       {children}
