@@ -8,7 +8,8 @@
 
 import Script from "next/script";
 import "@/styles/globals.css";
-import { Providers } from "@/context/providers";
+import { AppThemeProvider } from "@/context/app-theme-provider";
+import { AppContextProvider } from "@/context/app-context-provider";
 import { Josefin_Sans } from "next/font/google";
 
 const josefinSans = Josefin_Sans({
@@ -27,7 +28,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={josefinSans.className}>
-        <Providers>{children}</Providers>
+        <AppThemeProvider>
+          <AppContextProvider>{children}</AppContextProvider>
+        </AppThemeProvider>
       </body>
       <Script src="/static/support-color-mode.js" />
     </html>
