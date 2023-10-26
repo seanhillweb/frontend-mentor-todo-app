@@ -6,18 +6,17 @@ import { ACTIONS, AppReducer } from "@/context/reducer";
 export const AppContext = createContext();
 
 export function AppContextProvider({ children }) {
-  // const [state, dispatch] = useReducer(
-  //   AppReducer,
-  //   localStorage.getItem("todos")
-  //     ? JSON.parse(localStorage.getItem("todos"))
-  //     : []
-  // );
 
-  const initialState = [];
+  const initialState = {
+    todos: [],
+    activeTodos: [],
+    completeTodos: [],
+    showTodos: true,
+    showActiveTodos: false,
+    showCompleteTodos: false,
+  };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
-
-  console.log("TODOS ARRAY:", state);
 
   const addTodo = (object) => {
     dispatch({ type: ACTIONS.ADD_TODO, payload: object });
@@ -35,6 +34,18 @@ export function AppContextProvider({ children }) {
     dispatch({ type: ACTIONS.CLEAR_COMPLETE });
   };
 
+  const showAllTodos = () => {
+    dispatch({ type: ACTIONS.SHOW_ALL_TODOS });
+  };
+
+  const showActiveTodos = () => {
+    dispatch({ type: ACTIONS.SHOW_ACTIVE_TODOS });
+  };
+
+  const showCompleteTodos = () => {
+    dispatch({ type: ACTIONS.SHOW_COMPLETE_TODOS });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -43,6 +54,9 @@ export function AppContextProvider({ children }) {
         deleteTodo,
         toggleTodo,
         clearTodos,
+        showAllTodos,
+        showActiveTodos,
+        showCompleteTodos
       }}
     >
       {children}

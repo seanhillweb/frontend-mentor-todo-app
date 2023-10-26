@@ -6,9 +6,9 @@ import { useAppContext } from "@/context/app-context-provider";
 import { useState, useEffect } from "react";
 
 const Count = ({ state }) => {
-  const [count, setCount] = useState(state.length);
+  const [count, setCount] = useState(state.todos.length);
   useEffect(() => {
-    setCount(state.filter((item) => item.completed === false).length);
+    setCount(state.todos.filter((item) => item.completed === false).length);
   }, [state]);
   return (
     <p className="text-sm text-scheme-light-400 dark:text-scheme-dark-600">
@@ -18,15 +18,52 @@ const Count = ({ state }) => {
 };
 
 const Filter = () => {
+  const [active, setActive] = useState("all");
+  const { showAllTodos, showActiveTodos, showCompleteTodos } = useAppContext();
+
+  const handleShowAll = () => {
+    showAllTodos();
+    setActive("all");
+  }
+  const handleShowActive = () => {
+    showActiveTodos();
+    setActive("active");
+  }
+  const handleShowComplete = () => {
+    showCompleteTodos();
+    setActive("complete");
+  };
+
   return (
     <div className="flex flex-row items-center justify-between gap-x-4">
-      <button className="text-sm font-bold text-scheme-light-400 hover:text-scheme-light-500 dark:text-scheme-dark-600 dark:hover:text-scheme-dark-300">
+      <button
+        onClick={handleShowAll}
+        className={`text-sm font-bold  ${
+          active === "all"
+            ? "text-brand-bright-blue"
+            : "text-scheme-light-400 hover:text-scheme-light-500 dark:text-scheme-dark-600 dark:hover:text-scheme-dark-300"
+        }`}
+      >
         All
       </button>
-      <button className="text-sm font-bold text-scheme-light-400 hover:text-scheme-light-500 dark:text-scheme-dark-600 dark:hover:text-scheme-dark-300">
+      <button
+        onClick={handleShowActive}
+        className={`text-sm font-bold  ${
+          active === "active"
+            ? "text-brand-bright-blue"
+            : "text-scheme-light-400 hover:text-scheme-light-500 dark:text-scheme-dark-600 dark:hover:text-scheme-dark-300"
+        }`}
+      >
         Active
       </button>
-      <button className="text-sm font-bold text-scheme-light-400 hover:text-scheme-light-500 dark:text-scheme-dark-600 dark:hover:text-scheme-dark-300">
+      <button
+        onClick={handleShowComplete}
+        className={`text-sm font-bold  ${
+          active === "complete"
+            ? "text-brand-bright-blue"
+            : "text-scheme-light-400 hover:text-scheme-light-500 dark:text-scheme-dark-600 dark:hover:text-scheme-dark-300"
+        }`}
+      >
         Completed
       </button>
     </div>
@@ -86,7 +123,18 @@ const TodoItem = ({ todo }) => {
 };
 
 const TodoItems = ({ state }) => {
-  if (state.length === 0) {
+
+  let todos;
+
+  if (state.showCompleteTodos) {
+    todos = state.completeTodos;
+  } else if (state.showActiveTodos) {
+    todos = state.activeTodos;
+  } else {
+    todos = state.todos;
+  }
+
+  if (todos.length === 0) {
     return (
       <div className="flex flex-row items-start px-6 pb-[17px] pt-[18px]">
         <p className="grow text-scheme-light-500 dark:text-scheme-dark-300">
@@ -97,7 +145,7 @@ const TodoItems = ({ state }) => {
   } else {
     return (
       <ul className="list-none">
-        {state.map((todo) => (
+        {todos.map((todo) => (
           <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
