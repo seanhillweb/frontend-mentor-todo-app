@@ -6,7 +6,6 @@ export default function Attribution() {
   return (
     <footer
       className="px-4 py-3 text-center text-sm text-scheme-light-400 dark:text-scheme-dark-500"
-      role="contentinfo"
       aria-label="Site"
     >
       Challenge by{" "}
