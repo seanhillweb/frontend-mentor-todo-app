@@ -13,12 +13,14 @@ export function AppContextProvider({ children }) {
   //     : []
   // );
 
-  const [state, dispatch] = useReducer(AppReducer, []);
+  const initialState = [];
+
+  const [state, dispatch] = useReducer(AppReducer, initialState);
 
   console.log("TODOS ARRAY:", state);
 
-  const addTodo = (content) => {
-    dispatch({ type: ACTIONS.ADD_TODO, payload: content });
+  const addTodo = (object) => {
+    dispatch({ type: ACTIONS.ADD_TODO, payload: object });
   };
 
   const deleteTodo = (id) => {

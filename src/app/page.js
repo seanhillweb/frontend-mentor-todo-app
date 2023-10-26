@@ -2,6 +2,7 @@ import Banner from "@/components/banner";
 import { ThemeSwitch } from "@/components/theme-switch";
 import Form from "@/components/form";
 import TodoList from "@/components/todo-list";
+import Attribution from "@/components/attribution";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Attribution />
     </main>
   );
 }

@@ -16,8 +16,7 @@ export default function Form() {
   } = useForm({});
 
   const onSubmit = (data) => {
-    console.log(data);
-    addTodo(data.todo);
+    addTodo({ id: Date.now(), content: data.todo, completed: false });
     reset();
   };
 

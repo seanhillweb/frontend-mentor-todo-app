@@ -9,7 +9,7 @@ export const ACTIONS = {
 export function AppReducer(state, action) {
   switch (action.type) {
     case ACTIONS.ADD_TODO:
-      return [...state, addTodoShape(action.payload)];
+      return [...state, action.payload];
     case ACTIONS.DELETE_TODO:
       return state.filter((item) => item.id !== action.payload);
     case ACTIONS.TOGGLE_TODO:
@@ -24,8 +24,4 @@ export function AppReducer(state, action) {
     default:
       return state;
   }
-}
-
-function addTodoShape(content) {
-  return { id: Date.now(), content: content, completed: false };
 }

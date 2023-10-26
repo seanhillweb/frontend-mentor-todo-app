@@ -6,7 +6,7 @@ import desktopBackgroundDark from "@/public/bg-desktop-dark.jpg";
 
 export default function Banner() {
   return (
-    <>
+    <div>
       <Image
         src={mobileBackgroundLight}
         alt=""
@@ -35,6 +35,6 @@ export default function Banner() {
         height={300}
         className="absolute left-0 right-0 top-0 -z-10 mx-auto hidden w-full md:hidden dark:md:block"
       />
-    </>
+    </div>
   );
 }
