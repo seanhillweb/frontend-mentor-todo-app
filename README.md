@@ -1,6 +1,6 @@
 # Frontend Mentor - Todo app solution
 
-This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -14,8 +14,6 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -79,9 +77,7 @@ export function AppReducer(state, action) {
     case ACTIONS.DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter(
-          (item) => item.id !== action.payload
-        ),
+        todos: state.todos.filter((item) => item.id !== action.payload),
         activeTodos: state.activeTodos.filter(
           (item) => item.id !== action.payload
         ),
@@ -115,7 +111,7 @@ export function AppReducer(state, action) {
       return {
         ...state,
         todos: state.todos.filter((item) => item.completed === false),
-        completeTodos: []
+        completeTodos: [],
       };
     case ACTIONS.SHOW_ALL_TODOS:
       return {
@@ -161,7 +157,6 @@ import { ACTIONS, AppReducer } from "@/context/reducer";
 export const AppContext = createContext();
 
 export function AppContextProvider({ children }) {
-
   const initialState = {
     todos: [],
     activeTodos: [],
@@ -211,7 +206,7 @@ export function AppContextProvider({ children }) {
         clearTodos,
         showAllTodos,
         showActiveTodos,
-        showCompleteTodos
+        showCompleteTodos,
       }}
     >
       {children}
