@@ -37,6 +37,12 @@ export function AppReducer(state, action) {
           }
           return item;
         }),
+        activeTodos: state.activeTodos.map((item) => {
+          if (item.id === action.payload) {
+            return { ...item, completed: !item.completed };
+          }
+          return item;
+        }),
       };
     case ACTIONS.CLEAR_COMPLETE:
       return {
