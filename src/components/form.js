@@ -29,7 +29,7 @@ export default function Form() {
           id="todo"
           name="todo"
           placeholder="Create a new todo..."
-          className={`w-full rounded-md border-2 bg-white pb-4 pl-[70px] pr-4 pt-[18px] text-base text-scheme-light-500 shadow-lg placeholder:text-scheme-light-400 focus:ring-transparent dark:bg-scheme-dark-200 dark:text-scheme-dark-300 dark:placeholder:text-scheme-dark-500 md:text-lg ${
+          className={`w-full rounded-md border-2 bg-white pb-4 pl-[70px] pr-4 pt-[18px] text-base text-scheme-light-500 placeholder:text-scheme-light-400 focus:ring-transparent dark:bg-scheme-dark-200 dark:text-scheme-dark-300 dark:placeholder:text-scheme-dark-500 md:text-lg ${
             errors.todo
               ? "border-red-500 hover:border-red-500 focus:border-red-500"
               : "border-white hover:border-white focus:border-white dark:border-scheme-dark-200 dark:hover:border-scheme-dark-200 dark:focus:border-scheme-dark-200"
